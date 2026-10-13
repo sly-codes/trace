@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Trace</title>
+    <link rel="stylesheet" href="popup.css" />
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <header class="head">
+      <svg class="logo" viewBox="0 0 32 32" aria-hidden="true">
+        <rect width="32" height="32" rx="7" fill="#131613" />
+        <path d="M7 12V7h5M20 7h5v5M25 20v5h-5M12 25H7v-5" fill="none" stroke="#c6ff3d" stroke-width="2.6" stroke-linecap="square" />
+        <rect x="13" y="13" width="6" height="6" fill="#c6ff3d" />
+      </svg>
+      <div>
+        <h1>Trace</h1>
+        <p>Inspect the web, one element at a time.</p>
+      </div>
+      <p class="status" id="status" data-state="idle"><i aria-hidden="true"></i><span id="status-text">Ready</span></p>
+    </header>
+
+    <main>
+      <section class="start">
+        <button class="btn btn--primary" type="button" id="toggle">Start Inspecting</button>
+        <p class="hint" id="hint">Hover any element on the page, then click it. Press <kbd>Esc</kbd> to cancel.</p>
+        <p class="error" id="error" role="alert" hidden></p>
+      </section>
+
+      <section class="block" id="last" hidden>
+        <h2>Last inspected</h2>
+        <div class="card">
+          <div class="card__top">
+            <code class="card__name" id="last-name"></code>
+            <span class="card__size" id="last-size"></span>
+          </div>
+          <p class="card__target" id="last-target"></p>
+          <p class="card__path" id="last-path"></p>
+          <div class="card__foot">
+            <span class="card__meta" id="last-meta"></span>
+            <span class="card__colors" id="last-colors"></span>
+          </div>
+          <div class="card__actions">
+            <button class="btn" type="button" id="reopen">Reopen on page</button>
+            <button class="btn" type="button" id="copy-last">Copy selector</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="block__head">
+          <h2>Recent <span id="count"></span></h2>
+          <button class="link" type="button" id="clear" hidden>Clear all</button>
+        </div>
+        <p class="empty" id="empty">Nothing inspected yet. Elements you select will be listed here, on this device only.</p>
+        <ul class="history" id="history"></ul>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <span>Stored locally. Nothing is sent anywhere.</span>
+      <span>
+        <a href="doc.html?file=PRIVACY.md" target="_blank" rel="noopener">Privacy</a>
+        <a href="doc.html?file=README.md" target="_blank" rel="noopener">Read me</a>
+      </span>
+    </footer>
+
+    <p class="toast" id="toast" role="status" hidden></p>
+  </body>
+</html>
